@@ -1,0 +1,20 @@
+exer3
+
+function criarContador() {
+  let count = 0;
+
+  return function() {
+    count++;
+    return count;
+  };
+}
+
+const contador1 = criarContador();
+const contador2 = criarContador();
+
+
+console.log(contador1(1)); 
+console.log(contador1(2)); 
+
+console.log(contador2(1)); 
+console.log(contador2(2));  

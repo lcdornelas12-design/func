@@ -1,0 +1,13 @@
+exer6
+
+function saudacao(nome = "Visitante", idioma = "pt") {
+  if (idioma === "pt") return "Olá, " + nome + "!";
+  if (idioma === "en") return "Hello, " + nome + "!";
+  if (idioma === "es") return "Hola, " + nome + "!";
+  return "Idioma não suportado";
+}
+
+console.log(saudacao("Ana", "pt"));
+console.log(saudacao("John", "en"));
+console.log(saudacao("Carlos", "es"));
+console.log(saudacao());

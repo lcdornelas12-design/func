@@ -1,0 +1,19 @@
+exer7
+
+function processarArray(array, callback) {
+  let resultado = [];
+
+  for (let i = 0; i < array.length; i++) {
+    resultado.push(callback(array[i]));
+  }
+
+  return resultado;
+}
+
+function dobro(numero) {
+  return numero * 2;
+}
+
+const numeros = [1, 2, 3, 4, 5];
+
+console.log(processarArray(numeros, dobro));

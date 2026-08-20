@@ -1,0 +1,13 @@
+exer5
+
+function calculadora(num1, num2, operacao) {
+  if (operacao === "soma") return num1 + num2;
+  if (operacao === "subtracao") return num1 - num2;
+  if (operacao === "multiplicacao") return num1 * num2;
+  if (operacao === "divisao") return num1 / num2;
+  return "Operação inválida";
+}
+
+console.log(calculadora(10, 5, "soma"));
+console.log(calculadora(10, 5, "subtracao"));
+console.log(calculadora(10, 5, "multiplicacao"));

@@ -1,0 +1,20 @@
+exer8
+
+function criarPessoa(nome, idade, cidade) {
+  return {
+    nome: nome,
+    idade: idade,
+    cidade: cidade,
+    exibir: function() {
+      return "Nome: " + this.nome + ", Idade: " + this.idade + ", Cidade: " + this.cidade;
+    }
+  };
+}
+
+const pessoa1 = criarPessoa("Ana", 25, "São Paulo");
+const pessoa2 = criarPessoa("João", 30, "Rio de Janeiro");
+const pessoa3 = criarPessoa("Maria", 22, "Belo Horizonte");
+
+console.log(pessoa1.exibir());
+console.log(pessoa2.exibir());
+console.log(pessoa3.exibir());
