@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador de Funções</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a2e; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; }
+
+        .demo-calculadora {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            border: 2px solid #dee2e6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .demo-calculadora .header-demo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .demo-calculadora .header-demo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .demo-calculadora .header-demo h3 { font-size: 1.1rem; }
+        .demo-calculadora .header-demo small { font-size: 0.7rem; color: #6c757d; display: block; }
+
+        .input-group { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .input-group input { flex: 1; padding: 10px 14px; border-radius: 8px; border: 2px solid #dee2e6; font-size: 1rem; min-width: 100px; }
+        .input-group input:focus { outline: none; border-color: #f5576c; box-shadow: 0 0 0 3px rgba(245,87,108,0.2); }
+
+        .btn-demo {
+            padding: 8px 14px; margin-top: 6px; border-radius: 8px; border: none;
+            background: #f5576c; color: white; font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center;
+            justify-content: center; gap: 6px; flex: 1; min-width: 70px;
+        }
+        .btn-demo:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(245,87,108,0.3); }
+        .btn-demo img { width: 16px; height: 16px; filter: brightness(0) invert(1); }
+        .btn-demo.btn-secondary { background: #6c757d; }
+        .btn-demo.btn-secondary:hover { background: #5a6268; }
+        .btn-demo.btn-success { background: #28a745; }
+        .btn-demo.btn-success:hover { background: #218838; }
+        .btn-demo.btn-danger { background: #dc3545; }
+        .btn-demo.btn-danger:hover { background: #c82333; }
+        .btn-demo.full { flex: 1 1 100%; }
+
+        .btn-group-demo { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+        .btn-group-demo .btn-demo { flex: 1; min-width: 60px; }
+
+        #resultado-funcao {
+            margin-top: 14px; background: #f0f0f0; padding: 12px; border-radius: 8px;
+            max-height: 200px; overflow-y: auto; white-space: pre-wrap; border: 1px solid #dee2e6;
+            font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; min-height: 50px;
+            text-align: center;
+        }
+
+        .footer-demo {
+            text-align: center; margin-top: 15px; padding-top: 15px;
+            border-top: 1px solid #dee2e6; font-size: 0.75rem; color: #6c757d;
+        }
+        .footer-demo .autor { display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .footer-demo .autor img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="demo-calculadora">
+            <div class="header-demo">
+                <img src="images/logo-dev.jpg" alt="Logo" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop&crop=face'" />
+                <div>
+                    <h3>🧩 Gerenciador de Funções</h3>
+                    <small>Teste diferentes tipos de funções</small>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="number" id="valor1" placeholder="Número 1" />
+                <input type="number" id="valor2" placeholder="Número 2" />
+            </div>
+
+            <div class="btn-group-demo">
+                <button class="btn-demo" onclick="executarFuncao('dobro')" title="Função Nomeada">
+                    <img src="icons/function.svg" /> Dobro
+                </button>
+                <button class="btn-demo" onclick="executarFuncao('triplo')" title="Arrow Function">
+                    <img src="icons/arrow.svg" /> Triplo
+                </button>
+            </div>
+
+            <div class="btn-group-demo">
+                <button class="btn-demo" onclick="executarFuncao('soma')" title="Função com Retorno">
+                    <img src="icons/calcular.svg" /> Soma
+                </button>
+                <button class="btn-demo" onclick="executarFuncao('subtrair')" title="Função com Retorno">
+                    <img src="icons/calcular.svg" /> Subtrair
+                </button>
+            </div>
+
+            <div class="btn-group-demo">
+                <button class="btn-demo" onclick="executarFuncao('multiplicar')" title="Função com Retorno">
+                    <img src="icons/calcular.svg" /> Multiplicar
+                </button>
+                <button class="btn-demo" onclick="executarFuncao('dividir')" title="Função com Retorno">
+                    <img src="icons/calcular.svg" /> Dividir
+                </button>
+            </div>
+
+            <div class="btn-group-demo">
+                <button class="btn-demo" onclick="executarFuncao('callback')" title="Função Callback">
+                    <img src="icons/callback.svg" /> Callback
+                </button>
+                <button class="btn-demo" onclick="executarFuncao('saudacao')" title="Arrow Function">
+                    <img src="icons/arrow.svg" /> Saudação
+                </button>
+            </div>
+
+            <div class="btn-group-demo">
+                <button class="btn-demo btn-success" onclick="exportarJSON()" title="Exportar">
+                    <img src="icons/export.svg" /> Exportar backup
+                </button>
+                <button class="btn-demo btn-secondary" onclick="document.getElementById('importFile').click();" title="Importar">
+                    <img src="icons/import.svg" /> Importar backup
+                </button>
+                <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importarJSON(event)" />
+            </div>
+
+            <div class="btn-group-demo">
+                <button class="btn-demo btn-danger full" onclick="limparResultado()">
+                    <img src="icons/export.svg" /> Limpar resultado
+                </button>
+            </div>
+
+            <div id="resultado-funcao">🔢 Digite os números e clique em uma função</div>
+
+            <div class="footer-demo">
+                <div class="autor">
+                    <img src="images/logo-dev.jpg" alt="Logo" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=60&h=60&fit=crop&crop=face'" />
+                    <span>Desenvolvido por <strong>Seu Nome</strong></span>
+                </div>
+                <p style="font-size:0.7rem; margin-top:4px;">Dados carregados do arquivo funcoes.json</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. FUNÇÕES QUE SERÃO USADAS NO GERENCIADOR
+        // ============================================================
+
+        // Função Nomeada - dobro de um número
+        function dobro(num) {
+            return num * 2;
+        }
+
+        // Arrow Function - triplo de um número
+        const triplo = (num) => num * 3;
+
+        // Função com Retorno - soma
+        function soma(a, b) {
+            return a + b;
+        }
+
+        // Função com Retorno - subtração
+        function subtrair(a, b) {
+            return a - b;
+        }
+
+        // Função com Retorno - multiplicação
+        function multiplicar(a, b) {
+            return a * b;
+        }
+
+        // Função com Retorno - divisão
+        function dividir(a, b) {
+            if (b === 0) {
+                return "Erro: Divisão por zero!";
+            }
+            return a / b;
+        }
+
+        // Função com Callback - processa os números com uma função
+        function processarCallback(a, b, callback) {
+            return callback(a, b);
+        }
+
+        // Arrow Function - saudação personalizada
+        const saudacao = (nome) => {
+            if (!nome) return "Olá, Visitante!";
+            return "Olá, " + nome + "!";
+        };
+
+        // ============================================================
+        // 2. FUNÇÃO PRINCIPAL - EXECUTAR FUNÇÃO
+        // ============================================================
+        function executarFuncao(tipo) {
+            const valor1 = parseFloat(document.getElementById("valor1").value);
+            const valor2 = parseFloat(document.getElementById("valor2").value);
+            const resultado = document.getElementById("resultado-funcao");
+
+            let resposta = "";
+
+            if (tipo === "dobro") {
+                if (isNaN(valor1)) { alert("Digite um número!"); return; }
+                const result = dobro(valor1);
+                resposta = "🔢 Dobro de " + valor1 + " = " + result;
+                resultado.style.color = "#28a745";
+            } else if (tipo === "triplo") {
+                if (isNaN(valor1)) { alert("Digite um número!"); return; }
+                const result = triplo(valor1);
+                resposta = "🔢 Triplo de " + valor1 + " = " + result;
+                resultado.style.color = "#17a2b8";
+            } else if (tipo === "soma") {
+                if (isNaN(valor1) || isNaN(valor2)) { alert("Digite dois números!"); return; }
+                const result = soma(valor1, valor2);
+                resposta = "➕ Soma de " + valor1 + " + " + valor2 + " = " + result;
+                resultado.style.color = "#28a745";
+            } else if (tipo === "subtrair") {
+                if (isNaN(valor1) || isNaN(valor2)) { alert("Digite dois números!"); return; }
+                const result = subtrair(valor1, valor2);
+                resposta = "➖ Subtração de " + valor1 + " - " + valor2 + " = " + result;
+                resultado.style.color = "#dc3545";
+            } else if (tipo === "multiplicar") {
+                if (isNaN(valor1) || isNaN(valor2)) { alert("Digite dois números!"); return; }
+                const result = multiplicar(valor1, valor2);
+                resposta = "✖️ Multiplicação de " + valor1 + " × " + valor2 + " = " + result;
+                resultado.style.color = "#6f42c1";
+            } else if (tipo === "dividir") {
+                if (isNaN(valor1) || isNaN(valor2)) { alert("Digite dois números!"); return; }
+                const result = dividir(valor1, valor2);
+                if (typeof result === "string") {
+                    resposta = "⚠️ " + result;
+                    resultado.style.color = "#dc3545";
+                } else {
+                    resposta = "➗ Divisão de " + valor1 + " ÷ " + valor2 + " = " + result;
+                    resultado.style.color = "#28a745";
+                }
+            } else if (tipo === "callback") {
+                if (isNaN(valor1) || isNaN(valor2)) { alert("Digite dois números!"); return; }
+                // Usando a função callback para somar
+                const result = processarCallback(valor1, valor2, function(a, b) {
+                    return a + b;
+                });
+                resposta = "🔄 Callback - Soma de " + valor1 + " + " + valor2 + " = " + result;
+                resultado.style.color = "#f7971e";
+            } else if (tipo === "saudacao") {
+                const nome = document.getElementById("valor1").value;
+                const result = saudacao(nome || undefined);
+                resposta = "👋 " + result;
+                resultado.style.color = "#17a2b8";
+            }
+
+            resultado.textContent = resposta;
+        }
+
+        // ============================================================
+        // 3. FUNÇÕES DE LIMPEZA
+        // ============================================================
+        function limparResultado() {
+            document.getElementById("resultado-funcao").textContent = "🔢 Digite os números e clique em uma função";
+            document.getElementById("resultado-funcao").style.color = "#1a1a2e";
+            document.getElementById("valor1").value = "";
+            document.getElementById("valor2").value = "";
+        }
+
+        // ============================================================
+        // 4. EXPORTAR E IMPORTAR JSON
+        // ============================================================
+        function exportarJSON() {
+            const dados = {
+                funcoes: [
+                    { nome: "dobro", tipo: "Função Nomeada", descricao: "Calcula o dobro de um número" },
+                    { nome: "triplo", tipo: "Arrow Function", descricao: "Calcula o triplo de um número" },
+                    { nome: "soma", tipo: "Função com Retorno", descricao: "Soma dois números" },
+                    { nome: "subtrair", tipo: "Função com Retorno", descricao: "Subtrai dois números" },
+                    { nome: "multiplicar", tipo: "Função com Retorno", descricao: "Multiplica dois números" },
+                    { nome: "dividir", tipo: "Função com Retorno", descricao: "Divide dois números" },
+                    { nome: "callback", tipo: "Função Callback", descricao: "Processa números com callback" },
+                    { nome: "saudacao", tipo: "Arrow Function", descricao: "Saudação personalizada" }
+                ]
+            };
+            const json = JSON.stringify(dados, null, 2);
+            const blob = new Blob([json], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "funcoes.json";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert("📥 Backup exportado com sucesso!");
+        }
+
+        function importarJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const dados = JSON.parse(e.target.result);
+                    if (!dados.funcoes || !Array.isArray(dados.funcoes)) {
+                        alert("❌ Arquivo JSON inválido!");
+                        return;
+                    }
+                    let mensagem = "📤 Funções importadas:\n";
+                    dados.funcoes.forEach(function(f) {
+                        mensagem += "  - " + f.nome + " (" + f.tipo + "): " + f.descricao + "\n";
+                    });
+                    alert(mensagem);
+                } catch (erro) {
+                    alert("❌ Erro ao importar: " + erro.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = "";
+        }
+
+        // ============================================================
+        // 5. CARREGAR DO JSON
+        // ============================================================
+        function carregarDoJSON() {
+            fetch("funcoes.json")
+                .then(function(resposta) {
+                    if (!resposta.ok) { throw new Error("Arquivo não encontrado"); }
+                    return resposta.json();
+                })
+                .then(function(dados) {
+                    if (dados.funcoes && Array.isArray(dados.funcoes)) {
+                        console.log("📥 Funções carregadas:", dados.funcoes.length);
+                    }
+                })
+                .catch(function() {
+                    // Silencia erro - usa lista padrão
+                });
+        }
+
+        carregarDoJSON();
+    </script>
+
+</body>
+</html>

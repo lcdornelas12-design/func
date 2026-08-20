@@ -1,0 +1,44 @@
+{
+    "funcoes": [
+        {
+            "nome": "dobro",
+            "tipo": "Função Nomeada",
+            "descricao": "Calcula o dobro de um número"
+        },
+        {
+            "nome": "triplo",
+            "tipo": "Arrow Function",
+            "descricao": "Calcula o triplo de um número"
+        },
+        {
+            "nome": "soma",
+            "tipo": "Função com Retorno",
+            "descricao": "Soma dois números"
+        },
+        {
+            "nome": "subtrair",
+            "tipo": "Função com Retorno",
+            "descricao": "Subtrai dois números"
+        },
+        {
+            "nome": "multiplicar",
+            "tipo": "Função com Retorno",
+            "descricao": "Multiplica dois números"
+        },
+        {
+            "nome": "dividir",
+            "tipo": "Função com Retorno",
+            "descricao": "Divide dois números"
+        },
+        {
+            "nome": "callback",
+            "tipo": "Função Callback",
+            "descricao": "Processa números com callback"
+        },
+        {
+            "nome": "saudacao",
+            "tipo": "Arrow Function",
+            "descricao": "Saudação personalizada"
+        }
+    ]
+}
